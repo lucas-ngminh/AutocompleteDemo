@@ -1,0 +1,113 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div style="padding-top:50px; padding-bottom: 50px;">
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <h2>1. Autocomplete with text value only</h2>
+            <div class="form-group">
+                <label class="control-label" for="users1">Users: </label><br />
+                <input class="form-control" id="users1">
+            </div>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <h2>2. Autocomplete with id and value</h2>
+            <div class="form-group">
+                <label class="control-label" for="users2">Users: </label><br />
+                <input class="form-control" id="users2">
+                <label class="control-label" for="userid2">Selected UserID: </label><br />
+                <input class="form-control" id="userid2" />
+            </div>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <h2>3. Autocomplete with custom labels</h2>
+            <div class="form-group">
+                <label class="control-label" for="users3">Users: </label><br />
+                <input class="form-control" id="users3">
+                <label class="control-label" for="userid3">Selected UserID: </label><br />
+                <input class="form-control" id="userid3" />
+            </div>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+        $('#users1').autocomplete({
+            source: '/User/SearchUserName/' + $('#users1').val()
+        });
+
+        $('#users2').autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '/User/SearchUser/',
+                    dataType: 'json',
+                    data: { term: $('#users2').val() },
+                    success: function (data) {
+                        var result = $.map(data, function (item) {
+                            return {
+                                label: item.name,
+                                value: item.id
+                            };
+                        });
+                        return response(result);
+                    }
+                });
+            },
+            select: function (event, ui) {
+                event.preventDefault();
+                $('#users2').val(ui.item.label);
+                $('#userid2').val(ui.item.value);
+            }
+        });
+
+
+        $('#users3').autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '/User/SearchUser/',
+                    dataType: 'json',
+                    data: { term: $('#users3').val() },
+                    success: function (data) {
+                        var result = $.map(data, function (item) {
+                            return {
+                                label: item.name,
+                                value: item.id,
+                                emailAddress: item.emailAddress
+                            };
+                        });
+                        return response(result);
+                    }
+                });
+            },
+            select: function (event, ui) {
+                event.preventDefault();
+                $('#users3').val(ui.item.label);
+                $('#userid3').val(ui.item.value);
+            },
+            create: function () {
+                $(this).data('ui-autocomplete')._renderItem = function (ul, item) {
+                    return $('<li>')
+                        .append('<div id="ui-id-6" tabindex="-1" class="ui-menu-item-wrapper">'
+                        + item.label + '<br> <span style="font-size:smaller;">' + item.emailAddress + '</span></div>')
+                        .appendTo(ul);
+                };
+            }
+        });
+    </script>
+}
