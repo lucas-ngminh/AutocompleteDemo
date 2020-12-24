@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutocompleteDemo", "AutocompleteDemo\AutocompleteDemo.csproj", "{D6C9530A-D474-40E2-B94E-F52D529191C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutocompleteDemo", "AutocompleteDemo\AutocompleteDemo.csproj", "{D6C9530A-D474-40E2-B94E-F52D529191C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoCompleteAngularJSDemo", "AutoCompleteAngularJSDemo\AutoCompleteAngularJSDemo.csproj", "{E36705AD-7247-4594-8E76-DB94D108EDCA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D6C9530A-D474-40E2-B94E-F52D529191C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6C9530A-D474-40E2-B94E-F52D529191C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6C9530A-D474-40E2-B94E-F52D529191C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E36705AD-7247-4594-8E76-DB94D108EDCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E36705AD-7247-4594-8E76-DB94D108EDCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E36705AD-7247-4594-8E76-DB94D108EDCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E36705AD-7247-4594-8E76-DB94D108EDCA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
